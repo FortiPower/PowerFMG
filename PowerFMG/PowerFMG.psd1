@@ -24,7 +24,7 @@ GUID = '773a833e-9378-4413-a392-b41f6d7ca04b'
 Author = 'Alexis La Goutte'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+#CompanyName = 'Unknown'
 
 # Copyright statement for this module
 Copyright = '(c) Alexis La Goutte. All rights reserved.'
@@ -63,7 +63,7 @@ PowerShellVersion = '5.0'
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = 'PowerFMG.Format.ps1xml'
+#FormatsToProcess = 'PowerFMG.Format.ps1xml'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
