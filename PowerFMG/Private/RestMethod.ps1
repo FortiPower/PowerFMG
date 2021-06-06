@@ -48,6 +48,9 @@ function Invoke-FMGRestMethod {
         [ValidateSet("GET", "SET", "ADD", "UPDATE", "DELETE", "CLONE", "EXEC")]
         [String]$method = "GET",
         [Parameter(Mandatory = $false)]
+        [ValidateSet("pm", "cli", "sys", "dvm", "dvmdb")]
+        [String]$type,
+        [Parameter(Mandatory = $false)]
         [psobject]$body,
         [Parameter(Mandatory = $false)]
         [psobject]$connection
@@ -73,19 +76,35 @@ function Invoke-FMGRestMethod {
 
         $fullurl = "https://${Server}:${port}/jsonrpc"
 
+        switch ($type) {
+            'pm' {
+                $url = "pm/config"
+                if ($connection.adom) {
+                    $url += "/adom/" + $connection.adom + "/obj/" + $uri
+                }
+                else {
+                    $url += "/global/obj/" + $uri
+                }
+            }
+            Default {
+                $url = $uri
+            }
+        }
+
+
         #Make params data (with uri and data)
         $params = @{
-            #data = $body
-            url = $uri
+            data = $body
+            url = $url
         }
 
         #Make Invoke-RestMethod body query
         $irm_body = @{
-            id = $connection.id++
-            method = $method
+            id      = $connection.id++
+            method  = $method
             session = $connection.session
             verbose = 1
-            params = @($params)
+            params  = @($params)
         }
 
         try {
