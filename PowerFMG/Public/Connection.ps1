@@ -72,6 +72,8 @@ function Connect-FMG {
         [Parameter(Mandatory = $false)]
         [string[]]$vdom,
         [Parameter(Mandatory = $false)]
+        [string]$adom,
+        [Parameter(Mandatory = $false)]
         [boolean]$DefaultConnection = $true
     )
 
@@ -80,7 +82,7 @@ function Connect-FMG {
 
     Process {
 
-        $connection = @{server = ""; session = ""; websession = ""; port = ""; headers = ""; invokeParams = ""; vdom = ""; version = "" ; id = 0 }
+        $connection = @{server = ""; session = ""; websession = ""; port = ""; headers = ""; invokeParams = ""; vdom = ""; adom = ""; version = "" ; id = 0 }
 
         #If there is a password (and a user), create a credential
         if ($Password) {
@@ -161,6 +163,7 @@ function Connect-FMG {
         $connection.headers = $headers
         $connection.port = $port
         $connection.invokeParams = $invokeParams
+        $connection.adom = $adom
         $connection.vdom = $vdom
         # $connection.version = [version]"$($version.results.current.major).$($version.results.current.minor).$($version.results.current.patch)"
 
