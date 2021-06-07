@@ -52,6 +52,18 @@ function Invoke-FMGRestMethod {
         [String]$type,
         [Parameter(Mandatory = $false)]
         [psobject]$body,
+        [Parameter (ParameterSetName = "filter")]
+        [array]$filter,
+        [Parameter(Mandatory = $false)]
+        [Parameter (ParameterSetName = "filter_build")]
+        [string]$filter_attribute,
+        [Parameter(Mandatory = $false)]
+        [ValidateSet('equal', 'contains')]
+        [Parameter (ParameterSetName = "filter_build")]
+        [string]$filter_type,
+        [Parameter (Mandatory = $false)]
+        [Parameter (ParameterSetName = "filter_build")]
+        [psobject]$filter_value,
         [Parameter(Mandatory = $false)]
         [psobject]$connection
     )
@@ -91,13 +103,43 @@ function Invoke-FMGRestMethod {
             }
         }
 
-
-        #Make params data (with uri and data)
-        $params = @{
-            data = $body
-            url = $url
+        #filter
+        $afilter = @()
+        switch ( $filter_type ) {
+            "equal" {
+                $afilter += ("==")
+                $afilter += ($filter_value)
+                #$filter_value = "==" + $filter_value
+            }
+            "contains" {
+                $afilter += ("==")
+                $afilter += ($filter_value)
+                # $filer_value = "=@" + $filter_value
+            }
+            #by default set to equal..
+            default {
+                $afilter += ("==")
+                $afilter += ($filter_value)
+                # $filter_value = "==" + $filter_value
+            }
         }
 
+        if ($filter_attribute) {
+            # $filter = $filter_attribute + $filter_value
+            #$filter = $afilter
+            $filter = @($filter_attribute) + $afilter
+        }
+
+        #Make params data (with uri, data, filter...)
+        $params = @{
+            url = $url
+        }
+        if ($body) {
+            $params.data = $body
+        }
+        if ($filter) {
+            $params.filter = $filter
+        }
         #Make Invoke-RestMethod body query
         $irm_body = @{
             id      = $connection.id++
