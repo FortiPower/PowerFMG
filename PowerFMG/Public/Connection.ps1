@@ -72,7 +72,7 @@ function Connect-FMG {
         [Parameter(Mandatory = $false)]
         [string[]]$vdom,
         [Parameter(Mandatory = $false)]
-        [string]$adom,
+        [string]$adom="root",
         [Parameter(Mandatory = $false)]
         [boolean]$DefaultConnection = $true
     )
