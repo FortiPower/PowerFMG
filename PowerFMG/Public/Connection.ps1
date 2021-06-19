@@ -147,14 +147,6 @@ function Connect-FMG {
             throw "Unable to connect to FortiManager (" + $irmResponse.result.status.code + ") " + $irmResponse.result.status.message
         }
 
-        # $uri = $url + "api/v2/monitor/system/firmware"
-        # try {
-        #     $version = Invoke-RestMethod $uri -Method "get" -WebSession $FMG @invokeParams
-        # }
-        # catch {
-        #     throw "Unable to found FMG version"
-        # }
-
         $connection.server = $server
         $connection.session =$irmResponse.session
         $connection.websession = $FMG
@@ -162,7 +154,17 @@ function Connect-FMG {
         $connection.port = $port
         $connection.invokeParams = $invokeParams
         $connection.adom = $adom
-        # $connection.version = [version]"$($version.results.current.major).$($version.results.current.minor).$($version.results.current.patch)"
+
+        #get FMG version
+        $status = Invoke-FMGRestMethod sys/status -connection $connection
+        # $uri = $url + "api/v2/monitor/system/firmware"
+        # try {
+        #     $version = Invoke-RestMethod $uri -Method "get" -WebSession $FMG @invokeParams
+        # }
+        # catch {
+        #     throw "Unable to found FMG version"
+        # }
+        $connection.version = [version]"$($status.major).$($status.minor).$($status.patch)"
 
         if ( $DefaultConnection ) {
             set-variable -name DefaultFMGConnection -value $connection -scope Global
