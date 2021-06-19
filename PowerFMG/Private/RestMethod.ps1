@@ -45,8 +45,8 @@ function Invoke-FMGRestMethod {
         [Parameter(Mandatory = $true, position = 1)]
         [String]$uri,
         [Parameter(Mandatory = $false)]
-        [ValidateSet("GET", "SET", "ADD", "UPDATE", "DELETE", "CLONE", "EXEC")]
-        [String]$method = "GET",
+        [ValidateSet("get", "set", "add", "update", "delete", "clone", "exec", IgnoreCase=$false)]
+        [String]$method = "get",
         [Parameter(Mandatory = $false)]
         [ValidateSet("pm", "cli", "sys", "dvm", "dvmdb")]
         [String]$type,
