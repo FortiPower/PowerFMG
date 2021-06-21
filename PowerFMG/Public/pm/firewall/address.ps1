@@ -399,7 +399,7 @@ function Set-FMGFirewallAddress {
             $invokeParams.add( 'vdom', $vdom )
         }
 
-        $uri = "pm/config/firewall/address/$($address.name)"
+        $uri = "firewall/address/$($address.name)"
 
         $_address = new-Object -TypeName PSObject
 
@@ -477,7 +477,7 @@ function Set-FMGFirewallAddress {
         }
 
         if ($PSCmdlet.ShouldProcess($address.name, 'Configure Firewall Address')) {
-            Invoke-FMGRestMethod -method "PUT" -body $_address -uri $uri -connection $connection @invokeParams | out-Null
+            Invoke-FMGRestMethod -method "set" -type 'pm' -body $_address -uri $uri -connection $connection @invokeParams | out-Null
 
             Get-FMGFirewallAddress -connection $connection @invokeParams -name $address.name
         }
@@ -531,10 +531,10 @@ function Remove-FMGFirewallAddress {
             $invokeParams.add( 'vdom', $vdom )
         }
 
-        $uri = "pm/config/firewall/address/$($address.name)"
+        $uri = "firewall/address/$($address.name)"
 
         if ($PSCmdlet.ShouldProcess($address.name, 'Remove Firewall Address')) {
-            $null = Invoke-FMGRestMethod -method "DELETE" -uri $uri -connection $connection @invokeParams
+            $null = Invoke-FMGRestMethod -method "delete" -type 'pm' -uri $uri -connection $connection @invokeParams
         }
     }
 
