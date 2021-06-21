@@ -185,9 +185,13 @@ function Copy-FMGFirewallAddress {
             $invokeParams.add( 'vdom', $vdom )
         }
 
-        $uri = "pm/config/firewall/address/$($address.name)/?action=clone&nkey=$($name)"
+        $uri = "firewall/address/$($address.name)"
 
-        Invoke-FMGRestMethod -method "POST" -uri $uri -connection $connection @invokeParams | out-Null
+        $body = Get-FMGFirewallAddress -connection $connection @invokeParams -name $address.name
+
+        $body.name = $name
+
+        Invoke-FMGRestMethod -method "clone" -type "pm" -uri $uri -body $body -connection $connection @invokeParams | out-Null
 
         Get-FMGFirewallAddress -connection $connection @invokeParams -name $name
     }
