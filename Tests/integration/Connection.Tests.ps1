@@ -44,7 +44,7 @@ Describe "Connect to a FortiManager (using multi connection)" {
     }
 
     It "Throw when try to use Invoke-FMGRestMethod and not connected" {
-        { Invoke-FMGRestMethod -uri "api/v2/cmdb/firewall/address" } | Should -Throw "Not Connected. Connect to the FortiGate with Connect-FMG"
+        { Invoke-FMGRestMethod -uri "api/v2/cmdb/firewall/address" } | Should -Throw "Not Connected. Connect to the FortiManager with Connect-FMG"
     }
 
     Context "Use Multi connection for call some (Get) cmdlet (Vlan, System...)" {
