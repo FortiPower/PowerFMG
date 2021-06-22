@@ -70,7 +70,7 @@ function Connect-FMG {
         [Parameter(Mandatory = $false)]
         [int]$Timeout = 0,
         [Parameter(Mandatory = $false)]
-        [string]$adom="root",
+        [string]$adom = "root",
         [Parameter(Mandatory = $false)]
         [boolean]$DefaultConnection = $true
     )
@@ -148,7 +148,7 @@ function Connect-FMG {
         }
 
         $connection.server = $server
-        $connection.session =$irmResponse.session
+        $connection.session = $irmResponse.session
         $connection.websession = $FMG
         $connection.headers = $headers
         $connection.port = $port
