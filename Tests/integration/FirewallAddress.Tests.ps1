@@ -31,11 +31,6 @@ Describe "Get Firewall Address" {
         $address.count | Should -Not -Be $NULL
     }
 
-    It "Get ALL Address with -skip" {
-        $address = Get-FMGFirewallAddress -skip
-        $address.count | Should -Not -Be $NULL
-    }
-
     It "Get Address ($pester_address1)" {
         $address = Get-FMGFirewallAddress -name $pester_address1
         $address.name | Should -Be $pester_address1

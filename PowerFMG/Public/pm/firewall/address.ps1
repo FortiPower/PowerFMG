@@ -230,11 +230,6 @@ function Get-FMGFirewallAddress {
         Get address with uuid 9e73a10e-1772-51ea-a8d7-297686fd7702
 
         .EXAMPLE
-        Get-FMGFirewallAddress -skip
-
-        Get list of all address object (but only relevant attributes)
-
-        .EXAMPLE
         Get-FMGFirewallAddress -vdom vdomX
 
         Get list of all address on VdomX
@@ -260,8 +255,6 @@ function Get-FMGFirewallAddress {
         [Parameter (ParameterSetName = "filter")]
         [psobject]$filter_value,
         [Parameter(Mandatory = $false)]
-        [switch]$skip,
-        [Parameter(Mandatory = $false)]
         [String[]]$vdom,
         [Parameter(Mandatory = $false)]
         [psobject]$connection = $DefaultFMGConnection
@@ -273,9 +266,7 @@ function Get-FMGFirewallAddress {
     Process {
 
         $invokeParams = @{ }
-        if ( $PsBoundParameters.ContainsKey('skip') ) {
-            $invokeParams.add( 'skip', $skip )
-        }
+
         if ( $PsBoundParameters.ContainsKey('vdom') ) {
             $invokeParams.add( 'vdom', $vdom )
         }
