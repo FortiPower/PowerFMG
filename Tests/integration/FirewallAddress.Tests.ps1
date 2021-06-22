@@ -86,8 +86,8 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "ipmask"
             #$address.'start-ip' | Should -Be "192.0.2.0"
             #$address.'end-ip' | Should -Be "255.255.255.0"
-            $address.subnet | Should -Be "192.0.2.0 255.255.255.0"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.subnet | Should -Be @("192.0.2.0", "255.255.255.0")
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -102,7 +102,7 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "ipmask"
             #$address.'start-ip' | Should -Be "192.0.2.0"
             #$address.'end-ip' | Should -Be "255.255.255.0"
-            $address.subnet | Should -Be "192.0.2.0 255.255.255.0"
+            $address.subnet | Should -Be @("192.0.2.0", "255.255.255.0")
             $address.'associated-interface' | Should -Be "port2"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
@@ -118,8 +118,8 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "ipmask"
             #$address.'start-ip' | Should -Be "192.0.2.0"
             #$address.'end-ip' | Should -Be "255.255.255.0"
-            $address.subnet | Should -Be "192.0.2.0 255.255.255.0"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.subnet | Should -Be @("192.0.2.0", "255.255.255.0")
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -Be "Add via PowerFMG"
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -134,8 +134,8 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "ipmask"
             #$address.'start-ip' | Should -Be "192.0.2.0"
             #$address.'end-ip' | Should -Be "255.255.255.0"
-            $address.subnet | Should -Be "192.0.2.0 255.255.255.0"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.subnet | Should -Be @("192.0.2.0", "255.255.255.0")
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be "disable"
@@ -165,7 +165,7 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "iprange"
             $address.'start-ip' | Should -Be "192.0.2.1"
             $address.'end-ip' | Should -Be "192.0.2.100"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -195,7 +195,7 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "iprange"
             $address.'start-ip' | Should -Be "192.0.2.1"
             $address.'end-ip' | Should -Be "192.0.2.100"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -Be "Add via PowerFMG"
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -210,7 +210,7 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "iprange"
             $address.'start-ip' | Should -Be "192.0.2.1"
             $address.'end-ip' | Should -Be "192.0.2.100"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be "disable"
@@ -240,7 +240,7 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "fqdn"
             $address.subnet | Should -BeNullOrEmpty
             $address.fqdn | Should -be "fortipower.github.io"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -270,7 +270,7 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "fqdn"
             $address.subnet | Should -BeNullOrEmpty
             $address.fqdn | Should -be "fortipower.github.io"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -Be "Add via PowerFMG"
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -285,7 +285,7 @@ Describe "Add Firewall Address" {
             $address.type | Should -Be "fqdn"
             $address.subnet | Should -BeNullOrEmpty
             $address.fqdn | Should -be "fortipower.github.io"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be "disable"
@@ -313,8 +313,8 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "ipmask"
             #$address.'start-ip' | Should -Be "192.0.3.0"
             #$address.'end-ip' | Should -Be "255.255.255.0"
-            $address.subnet | Should -Be "192.0.3.0 255.255.255.0"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.subnet | Should -Be @("192.0.3.0", "255.255.255.0")
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -329,8 +329,8 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "ipmask"
             # $address.'start-ip' | Should -Be "192.0.3.0"
             # $address.'end-ip' | Should -Be "255.255.255.128"
-            $address.subnet | Should -Be "192.0.3.0 255.255.255.128"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.subnet | Should -Be @("192.0.3.0", "255.255.255.128")
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -345,7 +345,7 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "ipmask"
             # $address.'start-ip' | Should -Be "192.0.3.0"
             # $address.'end-ip' | Should -Be "255.255.255.128"
-            $address.subnet | Should -Be "192.0.3.0 255.255.255.128"
+            $address.subnet | Should -Be @("192.0.3.0", "255.255.255.128")
             $address.'associated-interface' | Should -Be "port2"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
@@ -361,7 +361,7 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "ipmask"
             # $address.'start-ip' | Should -Be "192.0.3.0"
             # $address.'end-ip' | Should -Be "255.255.255.128"
-            $address.subnet | Should -Be "192.0.3.0 255.255.255.128"
+            $address.subnet | Should -Be @("192.0.3.0", "255.255.255.128")
             $address.'associated-interface' | Should -Be "port2"
             $address.comment | Should -Be "Modified by PowerFMG"
             if ($DefaultFMGConnection.version -lt "6.4.0") {
@@ -377,7 +377,7 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "ipmask"
             # $address.'start-ip' | Should -Be "192.0.3.0"
             # $address.'end-ip' | Should -Be "255.255.255.128"
-            $address.subnet | Should -Be "192.0.3.0 255.255.255.128"
+            $address.subnet | Should -Be @("192.0.3.0", "255.255.255.128")
             $address.'associated-interface' | Should -Be "port2"
             $address.comment | Should -Be "Modified by PowerFMG"
             if ($DefaultFMGConnection.version -lt "6.4.0") {
@@ -397,7 +397,7 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "ipmask"
             # $address.'start-ip' | Should -Be "192.0.3.0"
             # $address.'end-ip' | Should -Be "255.255.255.128"
-            $address.subnet | Should -Be "192.0.3.0 255.255.255.128"
+            $address.subnet | Should -Be @("192.0.3.0", "255.255.255.128")
             $address.'associated-interface' | Should -Be "port2"
             $address.comment | Should -Be "Modified by PowerFMG"
             if ($DefaultFMGConnection.version -lt "6.4.0") {
@@ -426,7 +426,7 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "iprange"
             $address.'start-ip' | Should -Be "192.0.2.99"
             $address.'end-ip' | Should -Be "192.0.2.100"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -441,7 +441,7 @@ Describe "Configure Firewall Address" {
             $address.type | Should -Be "iprange"
             $address.'start-ip' | Should -Be "192.0.2.99"
             $address.'end-ip' | Should -Be "192.0.2.199"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -532,7 +532,7 @@ Describe "Configure Firewall Address" {
             $address.uuid | Should -Not -BeNullOrEmpty
             $address.type | Should -Be "fqdn"
             $address.fqdn | Should -Be "fortipower.github.com"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -623,8 +623,8 @@ Describe "Copy Firewall Address" {
             $address.type | Should -Be "ipmask"
             # $address.'start-ip' | Should -Be "192.0.2.0"
             # $address.'end-ip' | Should -Be "255.255.255.0"
-            $address.subnet | Should -Be "192.0.2.0 255.255.255.0"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.subnet | Should -Be @("192.0.2.0", "255.255.255.0")
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -654,7 +654,7 @@ Describe "Copy Firewall Address" {
             $address.type | Should -Be "iprange"
             $address.'start-ip' | Should -Be "192.0.2.1"
             $address.'end-ip' | Should -Be "192.0.2.100"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
@@ -684,7 +684,7 @@ Describe "Copy Firewall Address" {
             $address.type | Should -Be "fqdn"
             $address.subnet | Should -BeNullOrEmpty
             $address.fqdn | Should -be "fortipower.github.io"
-            $address.'associated-interface' | Should -BeNullOrEmpty
+            $address.'associated-interface' | Should -Be "any"
             $address.comment | Should -BeNullOrEmpty
             if ($DefaultFMGConnection.version -lt "6.4.0") {
                 $address.visibility | Should -Be $true
