@@ -401,7 +401,7 @@ Describe "Configure Firewall Address" {
         }
 
         AfterAll {
-            Get-FMGFirewallAddress -uuid $script:uuid | Remove-FMGFirewallAddress -confirm:$false
+            Get-FMGFirewallAddress -name "pester_address_change" | Remove-FMGFirewallAddress -confirm:$false
         }
 
     }
@@ -508,7 +508,7 @@ Describe "Configure Firewall Address" {
         }
 
         AfterAll {
-            Get-FMGFirewallAddress -uuid $script:uuid | Remove-FMGFirewallAddress -confirm:$false
+            Get-FMGFirewallAddress -name "pester_address_change" | Remove-FMGFirewallAddress -confirm:$false
         }
 
     }
@@ -595,7 +595,7 @@ Describe "Configure Firewall Address" {
         }
 
         AfterAll {
-            Get-FMGFirewallAddress -uuid $script:uuid | Remove-FMGFirewallAddress -confirm:$false
+            Get-FMGFirewallAddress -name "pester_address_change" | Remove-FMGFirewallAddress -confirm:$false
         }
 
     }
