@@ -176,3 +176,50 @@ function Connect-FMG {
     End {
     }
 }
+
+
+function Disconnect-FMG {
+
+    <#
+        .SYNOPSIS
+        Disconnect a FortiManager
+
+        .DESCRIPTION
+        Disconnect the connection of FortiManager
+
+        .EXAMPLE
+        Disconnect-FMG
+
+        Disconnect the connection
+
+        .EXAMPLE
+        Disconnect-FMG -confirm:$false
+
+        Disconnect the connection with no confirmation
+
+    #>
+
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
+    Param(
+        [Parameter(Mandatory = $false)]
+        [psobject]$connection = $DefaultFMGConnection
+    )
+
+    Begin {
+    }
+
+    Process {
+
+        $url = "sys/logout"
+
+        if ($PSCmdlet.ShouldProcess($connection.server, 'Proceed with removal of FortiManager connection ?')) {
+            $null = Invoke-FMGRestMethod -method "exec" -uri $url -connection $connection
+            if (Test-Path variable:global:DefaultFMGConnection) {
+                Remove-Variable -name DefaultFMGConnection -scope global
+            }
+        }
+    }
+
+    End {
+    }
+}
