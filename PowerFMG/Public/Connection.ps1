@@ -61,7 +61,6 @@ function Connect-FMG {
         [SecureString]$Password,
         [Parameter(Mandatory = $false)]
         [PSCredential]$Credential,
-        [switch]$httpOnly = $false,
         [Parameter(Mandatory = $false)]
         [switch]$SkipCertificateCheck = $false,
         [Parameter(Mandatory = $false)]
