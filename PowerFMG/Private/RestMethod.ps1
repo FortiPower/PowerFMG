@@ -45,7 +45,7 @@ function Invoke-FMGRestMethod {
         [Parameter(Mandatory = $true, position = 1)]
         [String]$uri,
         [Parameter(Mandatory = $false)]
-        [ValidateSet("get", "set", "add", "update", "delete", "clone", "exec", IgnoreCase=$false)]
+        [ValidateSet("get", "set", "add", "update", "delete", "clone", "exec", IgnoreCase = $false)]
         [String]$method = "get",
         [Parameter(Mandatory = $false)]
         [ValidateSet("pm", "cli", "sys", "dvm", "dvmdb")]
@@ -75,7 +75,7 @@ function Invoke-FMGRestMethod {
 
         if ($null -eq $connection ) {
             if ($null -eq $DefaultFMGConnection) {
-                Throw "Not Connected. Connect to the Fortigate with Connect-FMG"
+                Throw "Not Connected. Connect to the FortiManager with Connect-FMG"
             }
             $connection = $DefaultFMGConnection
         }
@@ -157,7 +157,7 @@ function Invoke-FMGRestMethod {
 
         catch {
             Show-FMGException $_
-            throw "Unable to use FortiGate API"
+            throw "Unable to use FortiManager API"
         }
 
         #Check status code

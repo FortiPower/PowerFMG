@@ -61,7 +61,6 @@ function Connect-FMG {
         [SecureString]$Password,
         [Parameter(Mandatory = $false)]
         [PSCredential]$Credential,
-        [switch]$httpOnly = $false,
         [Parameter(Mandatory = $false)]
         [switch]$SkipCertificateCheck = $false,
         [Parameter(Mandatory = $false)]
@@ -70,7 +69,7 @@ function Connect-FMG {
         [Parameter(Mandatory = $false)]
         [int]$Timeout = 0,
         [Parameter(Mandatory = $false)]
-        [string]$adom="root",
+        [string]$adom = "root",
         [Parameter(Mandatory = $false)]
         [boolean]$DefaultConnection = $true
     )
@@ -148,7 +147,7 @@ function Connect-FMG {
         }
 
         $connection.server = $server
-        $connection.session =$irmResponse.session
+        $connection.session = $irmResponse.session
         $connection.websession = $FMG
         $connection.headers = $headers
         $connection.port = $port
@@ -171,6 +170,53 @@ function Connect-FMG {
         }
 
         $connection
+    }
+
+    End {
+    }
+}
+
+
+function Disconnect-FMG {
+
+    <#
+        .SYNOPSIS
+        Disconnect a FortiManager
+
+        .DESCRIPTION
+        Disconnect the connection of FortiManager
+
+        .EXAMPLE
+        Disconnect-FMG
+
+        Disconnect the connection
+
+        .EXAMPLE
+        Disconnect-FMG -confirm:$false
+
+        Disconnect the connection with no confirmation
+
+    #>
+
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
+    Param(
+        [Parameter(Mandatory = $false)]
+        [psobject]$connection = $DefaultFMGConnection
+    )
+
+    Begin {
+    }
+
+    Process {
+
+        $url = "sys/logout"
+
+        if ($PSCmdlet.ShouldProcess($connection.server, 'Proceed with removal of FortiManager connection ?')) {
+            $null = Invoke-FMGRestMethod -method "exec" -uri $url -connection $connection
+            if (Test-Path variable:global:DefaultFMGConnection) {
+                Remove-Variable -name DefaultFMGConnection -scope global
+            }
+        }
     }
 
     End {
