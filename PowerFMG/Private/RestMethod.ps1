@@ -24,12 +24,12 @@ function Invoke-FMGRestMethod {
       Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri with default parameter
 
       .EXAMPLE
-      Invoke-FMGRestMethod "-method "get" -uri "pm/config/global/obj/firewall/address" -vdom vdomX
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/global/obj/firewall/address" -vdom vdomX
 
       Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri on vdomX
 
       .EXAMPLE
-      Invoke-FMGRestMethod --method "post" -uri "pm/config/global/obj/firewall/address" -body $body
+      Invoke-FMGRestMethod -method "post" -uri "pm/config/global/obj/firewall/address" -body $body
 
       Invoke-RestMethod with FMG connection for post pm/config/global/obj/firewall/address uri with $body payload
 
