@@ -91,11 +91,12 @@ function Invoke-FMGRestMethod {
         switch ($type) {
             'pm' {
                 $url = "pm/config"
-                if ($connection.adom) {
-                    $url += "/adom/" + $connection.adom + "/obj/" + $uri
+                #if you set the global ADOM...
+                if ($connection.adom -eq "global") {
+                    $url += "/global/obj/" + $uri
                 }
                 else {
-                    $url += "/global/obj/" + $uri
+                    $url += "/adom/" + $connection.adom + "/obj/" + $uri
                 }
             }
             Default {
