@@ -14,29 +14,29 @@ function Invoke-FMGRestMethod {
       Invoke RestMethod with FMG connection variable (session)
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/global/obj/firewall/address"
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address"
 
-      Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri
 
       .EXAMPLE
       Invoke-FMGRestMethod "pm/config/global/obj/firewall/address"
 
-      Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri with default parameter
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with default parameter
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/global/obj/firewall/address" -vdom vdomX
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -vdom vdomX
 
-      Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri on vdomX
-
-      .EXAMPLE
-      Invoke-FMGRestMethod -method "post" -uri "pm/config/global/obj/firewall/address" -body $body
-
-      Invoke-RestMethod with FMG connection for post pm/config/global/obj/firewall/address uri with $body payload
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri on vdomX
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/global/obj/firewall/addresss" -connection $fw2
+      Invoke-FMGRestMethod -method "post" -uri "pm/config/adom/root/obj/firewall/address" -body $body
 
-      Invoke-RestMethod with $fw2 connection for get pm/config/global/obj/firewall/address uri
+      Invoke-RestMethod with FMG connection for post pm/config/adom/root/obj/firewall/address uri with $body payload
+
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/addresss" -connection $fw2
+
+      Invoke-RestMethod with $fw2 connection for get pm/config/adom/root/obj/firewall/address uri
 
     #>
 
