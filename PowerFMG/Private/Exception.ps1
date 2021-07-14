@@ -28,7 +28,7 @@ function Show-FMGException() {
 
         #$responseJson =  $responseBody | ConvertFrom-Json
 
-        Write-Warning "The FortiGate API sends an error message:"
+        Write-Warning "The FortiManager API sends an error message:"
         Write-Warning "Error description (code): $($Exception.Exception.Response.StatusDescription) ($($Exception.Exception.Response.StatusCode.Value__))"
         if ($responseBody) {
             if ($responseJson.message) {
