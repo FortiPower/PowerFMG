@@ -68,8 +68,6 @@ function Add-FMGFirewallAddress {
         [Parameter (Mandatory = $false)]
         [boolean]$visibility,
         [Parameter(Mandatory = $false)]
-        [String[]]$vdom,
-        [Parameter(Mandatory = $false)]
         [psobject]$connection = $DefaultFMGConnection
     )
 
@@ -79,9 +77,6 @@ function Add-FMGFirewallAddress {
     Process {
 
         $invokeParams = @{ }
-        if ( $PsBoundParameters.ContainsKey('vdom') ) {
-            $invokeParams.add( 'vdom', $vdom )
-        }
 
         if ( Get-FMGFirewallAddress @invokeParams -name $name -connection $connection) {
             Throw "Already an address object using the same name"
@@ -170,8 +165,6 @@ function Copy-FMGFirewallAddress {
         [Parameter (Mandatory = $true)]
         [string]$name,
         [Parameter(Mandatory = $false)]
-        [String[]]$vdom,
-        [Parameter(Mandatory = $false)]
         [psobject]$connection = $DefaultFMGConnection
     )
 
@@ -181,9 +174,6 @@ function Copy-FMGFirewallAddress {
     Process {
 
         $invokeParams = @{ }
-        if ( $PsBoundParameters.ContainsKey('vdom') ) {
-            $invokeParams.add( 'vdom', $vdom )
-        }
 
         $uri = "firewall/address/$($address.name)"
 
@@ -229,11 +219,6 @@ function Get-FMGFirewallAddress {
 
         Get address with uuid 9e73a10e-1772-51ea-a8d7-297686fd7702
 
-        .EXAMPLE
-        Get-FMGFirewallAddress -vdom vdomX
-
-        Get list of all address on VdomX
-
   #>
 
     [CmdletBinding(DefaultParameterSetName = "default")]
@@ -255,8 +240,6 @@ function Get-FMGFirewallAddress {
         [Parameter (ParameterSetName = "filter")]
         [psobject]$filter_value,
         [Parameter(Mandatory = $false)]
-        [String[]]$vdom,
-        [Parameter(Mandatory = $false)]
         [psobject]$connection = $DefaultFMGConnection
     )
 
@@ -266,10 +249,6 @@ function Get-FMGFirewallAddress {
     Process {
 
         $invokeParams = @{ }
-
-        if ( $PsBoundParameters.ContainsKey('vdom') ) {
-            $invokeParams.add( 'vdom', $vdom )
-        }
 
         switch ( $PSCmdlet.ParameterSetName ) {
             "name" {
@@ -379,8 +358,6 @@ function Set-FMGFirewallAddress {
         [Parameter (Mandatory = $false)]
         [boolean]$visibility,
         [Parameter(Mandatory = $false)]
-        [String[]]$vdom,
-        [Parameter(Mandatory = $false)]
         [psobject]$connection = $DefaultFMGConnection
     )
 
@@ -390,9 +367,6 @@ function Set-FMGFirewallAddress {
     Process {
 
         $invokeParams = @{ }
-        if ( $PsBoundParameters.ContainsKey('vdom') ) {
-            $invokeParams.add( 'vdom', $vdom )
-        }
 
         $uri = "firewall/address/$($address.name)"
 
@@ -511,8 +485,6 @@ function Remove-FMGFirewallAddress {
         [ValidateScript( { Confirm-FMGAddress $_ })]
         [psobject]$address,
         [Parameter(Mandatory = $false)]
-        [String[]]$vdom,
-        [Parameter(Mandatory = $false)]
         [psobject]$connection = $DefaultFMGConnection
     )
 
@@ -522,9 +494,6 @@ function Remove-FMGFirewallAddress {
     Process {
 
         $invokeParams = @{ }
-        if ( $PsBoundParameters.ContainsKey('vdom') ) {
-            $invokeParams.add( 'vdom', $vdom )
-        }
 
         $uri = "firewall/address/$($address.name)"
 
