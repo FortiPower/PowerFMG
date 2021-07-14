@@ -22,9 +22,9 @@ Function Confirm-FMGAddress {
     if ( -not ( $argument | get-member -name type -Membertype Properties)) {
         throw "Element specified does not contain a type property."
     }
-    if ( -not ( $argument | get-member -name country -Membertype Properties)) {
-        throw "Element specified does not contain a country property."
-    }
+    #if ( -not ( $argument | get-member -name country -Membertype Properties)) {
+    #    throw "Element specified does not contain a country property."
+    #}
 
     $true
 
