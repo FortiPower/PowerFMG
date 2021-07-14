@@ -129,24 +129,19 @@ function Invoke-FMGRestMethod {
             "equal" {
                 $afilter += ("==")
                 $afilter += ($filter_value)
-                #$filter_value = "==" + $filter_value
             }
             "contains" {
                 $afilter += ("contain")
                 $afilter += ($filter_value)
-                # $filer_value = "=@" + $filter_value
             }
             #by default set to equal..
             default {
                 $afilter += ("==")
                 $afilter += ($filter_value)
-                # $filter_value = "==" + $filter_value
             }
         }
 
         if ($filter_attribute) {
-            # $filter = $filter_attribute + $filter_value
-            #$filter = $afilter
             $filter = @($filter_attribute) + $afilter
         }
 
