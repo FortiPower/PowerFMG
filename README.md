@@ -50,9 +50,22 @@ For example, you can manage Address with the following commands:
 ```
 
 # Examples
-### Connecting to the FFortiManager
+### Connecting to the FortiManager
 
-The first thing to do is to connect to a FortiManager with the command `Connect-FMG` :
+The first thing to do is to create an user with API (JSON) Access
+
+Go on WebGUI of your FortiManager, on System Settings
+![](./Medias/FMG_System_Settings.PNG)  
+
+Go `Administrators`
+![](./Medias/FMG_Admin.PNG)  
+
+Click on `Create New`  
+
+![](./Medias/FMG_New_Admin_API.PNG)  
+and create a new user and don't forget to enable `JSON API Access` to `Read-Write`
+
+After connect to a FortiManager with the command `Connect-FMG` :
 
 ```powershell
 # Connect to the FortiManager
