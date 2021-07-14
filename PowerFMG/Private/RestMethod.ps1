@@ -52,6 +52,11 @@ function Invoke-FMGRestMethod {
       Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -filter_attribute name -filter_type contains -filter_value FMG
 
       Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with filter attribute equal name and filter value contains FMG
+
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "firewall/address" -type pm
+
+      Invoke-RestMethod with FMG connection for get firewall/address uri with set the adom from $DefaultFMGConnection (add pm/config/adom/XXX/obj to uri)
     #>
 
     [CmdletBinding(DefaultParameterSetName = "default")]
