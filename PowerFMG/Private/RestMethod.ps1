@@ -34,24 +34,24 @@ function Invoke-FMGRestMethod {
       Invoke-RestMethod with FMG connection for post pm/config/adom/root/obj/firewall/address uri with $body payload
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/addresss" -connection $fw2
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -connection $fw2
 
       Invoke-RestMethod with $fw2 connection for get pm/config/adom/root/obj/firewall/address uri
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/addres" -filter @('name', '==', 'FMG')
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -filter @('name', '==', 'FMG')
 
-      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/addres uri with only name equal FMG
-
-      .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/addres" -filter_attribute name -filter_value FMG
-
-      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/addres uri with filter attribute equal name and filter value equal FMG
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with only name equal FMG
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/addres" -filter_attribute name -filter_type contains -filter_value FMG
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -filter_attribute name -filter_value FMG
 
-      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/addres uri with filter attribute equal name and filter value contains FMG
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with filter attribute equal name and filter value equal FMG
+
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -filter_attribute name -filter_type contains -filter_value FMG
+
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with filter attribute equal name and filter value contains FMG
     #>
 
     [CmdletBinding(DefaultParameterSetName = "default")]
