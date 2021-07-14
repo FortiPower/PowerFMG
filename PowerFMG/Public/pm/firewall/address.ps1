@@ -8,10 +8,10 @@ function Add-FMGFirewallAddress {
 
     <#
         .SYNOPSIS
-        Add a FortiGate Address
+        Add a Firewall Address
 
         .DESCRIPTION
-        Add a FortiGate Address (ipmask, iprange, fqdn)
+        Add a Firewall Address (ipmask, iprange, fqdn)
 
         .EXAMPLE
         Add-FMGFirewallAddress -Name FMG -ip 192.0.2.0 -mask 255.255.255.0
@@ -150,10 +150,10 @@ function Copy-FMGFirewallAddress {
 
     <#
         .SYNOPSIS
-        Copy/Clone a FortiGate Address
+        Copy/Clone a Firewall Address
 
         .DESCRIPTION
-        Copy/Clone a FortiGate Address (ip, mask, comment, associated interface... )
+        Copy/Clone a Firewall Address (ip, mask, comment, associated interface... )
 
         .EXAMPLE
         $MyFMGAddress = Get-FMGFirewallAddress -name MyFMGAddress
@@ -305,10 +305,10 @@ function Set-FMGFirewallAddress {
 
     <#
         .SYNOPSIS
-        Configure a FortiGate Address
+        Configure a Firewall Address
 
         .DESCRIPTION
-        Change a FortiGate Address (ip, mask, comment, associated interface... )
+        Change a Firewall Address (ip, mask, comment, associated interface... )
 
         .EXAMPLE
         $MyFMGAddress = Get-FMGFirewallAddress -name MyFMGAddress
@@ -486,10 +486,10 @@ function Remove-FMGFirewallAddress {
 
     <#
         .SYNOPSIS
-        Remove a FortiGate Address
+        Remove a Firewall Address
 
         .DESCRIPTION
-        Remove an address object on the FortiGate
+        Remove an address object on the Firewall
 
         .EXAMPLE
         $MyFMGAddress = Get-FMGFirewallAddress -name MyFMGAddress
