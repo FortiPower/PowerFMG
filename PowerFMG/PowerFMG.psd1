@@ -95,13 +95,13 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            # Tags = @()
+            Tags       = @('Fortinet', 'FortiManager', 'API', 'PSEdition_Core', 'PSEdition_Desktop')
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            LicenseUri = 'https://github.com/FortiPower/PowerFMG/blob/master/LICENSE'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            ProjectUri = 'https://github.com/FortiPower/PowerFMG/'
 
             # A URL to an icon representing this module.
             # IconUri = ''
