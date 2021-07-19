@@ -1,9 +1,10 @@
 #Get public and private function definition files.
 $Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
+$Public_pm_firewall = @( Get-ChildItem -Path $PSScriptRoot\Public\pm\firewall\*.ps1 -ErrorAction SilentlyContinue )
 $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
 
 #Dot source the files
-Foreach ($import in @($Public + $Private)) {
+Foreach ($import in @($Public + $Public_pm_firewall + $Private)) {
     Try {
         . $import.fullname
     }
