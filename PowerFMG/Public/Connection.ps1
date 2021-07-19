@@ -156,13 +156,6 @@ function Connect-FMG {
 
         #get FMG version
         $status = Invoke-FMGRestMethod sys/status -connection $connection
-        # $uri = $url + "api/v2/monitor/system/firmware"
-        # try {
-        #     $version = Invoke-RestMethod $uri -Method "get" -WebSession $FMG @invokeParams
-        # }
-        # catch {
-        #     throw "Unable to found FMG version"
-        # }
         $connection.version = [version]"$($status.major).$($status.minor).$($status.patch)"
 
         if ( $DefaultConnection ) {
