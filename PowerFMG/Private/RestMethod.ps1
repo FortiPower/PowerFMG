@@ -134,6 +134,10 @@ function Invoke-FMGRestMethod {
                 $afilter += ("contain")
                 $afilter += ($filter_value)
             }
+            "like" {
+                $afilter += ("like")
+                $afilter += ("%" + $filter_value + "%")
+            }
             #by default set to equal..
             default {
                 $afilter += ("==")
