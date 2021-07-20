@@ -14,30 +14,49 @@ function Invoke-FMGRestMethod {
       Invoke RestMethod with FMG connection variable (session)
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/global/obj/firewall/address"
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address"
 
-      Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri
 
       .EXAMPLE
       Invoke-FMGRestMethod "pm/config/global/obj/firewall/address"
 
-      Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri with default parameter
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with default parameter
 
       .EXAMPLE
-      Invoke-FMGRestMethod "-method "get" -uri "pm/config/global/obj/firewall/address" -vdom vdomX
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -vdom vdomX
 
-      Invoke-RestMethod with FMG connection for get pm/config/global/obj/firewall/address uri on vdomX
-
-      .EXAMPLE
-      Invoke-FMGRestMethod --method "post" -uri "pm/config/global/obj/firewall/address" -body $body
-
-      Invoke-RestMethod with FMG connection for post pm/config/global/obj/firewall/address uri with $body payload
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri on vdomX
 
       .EXAMPLE
-      Invoke-FMGRestMethod -method "get" -uri "pm/config/global/obj/firewall/addresss" -connection $fw2
+      Invoke-FMGRestMethod -method "post" -uri "pm/config/adom/root/obj/firewall/address" -body $body
 
-      Invoke-RestMethod with $fw2 connection for get pm/config/global/obj/firewall/address uri
+      Invoke-RestMethod with FMG connection for post pm/config/adom/root/obj/firewall/address uri with $body payload
 
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -connection $fw2
+
+      Invoke-RestMethod with $fw2 connection for get pm/config/adom/root/obj/firewall/address uri
+
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -filter @('name', '==', 'FMG')
+
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with only name equal FMG
+
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -filter_attribute name -filter_value FMG
+
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with filter attribute equal name and filter value equal FMG
+
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "pm/config/adom/root/obj/firewall/address" -filter_attribute name -filter_type contains -filter_value FMG
+
+      Invoke-RestMethod with FMG connection for get pm/config/adom/root/obj/firewall/address uri with filter attribute equal name and filter value contains FMG
+
+      .EXAMPLE
+      Invoke-FMGRestMethod -method "get" -uri "firewall/address" -type pm
+
+      Invoke-RestMethod with FMG connection for get firewall/address uri with set the adom from $DefaultFMGConnection (add pm/config/adom/XXX/obj to uri)
     #>
 
     [CmdletBinding(DefaultParameterSetName = "default")]
@@ -91,11 +110,12 @@ function Invoke-FMGRestMethod {
         switch ($type) {
             'pm' {
                 $url = "pm/config"
-                if ($connection.adom) {
-                    $url += "/adom/" + $connection.adom + "/obj/" + $uri
+                #if you set the global ADOM...
+                if ($connection.adom -eq "global") {
+                    $url += "/global/obj/" + $uri
                 }
                 else {
-                    $url += "/global/obj/" + $uri
+                    $url += "/adom/" + $connection.adom + "/obj/" + $uri
                 }
             }
             Default {
@@ -109,24 +129,19 @@ function Invoke-FMGRestMethod {
             "equal" {
                 $afilter += ("==")
                 $afilter += ($filter_value)
-                #$filter_value = "==" + $filter_value
             }
             "contains" {
-                $afilter += ("==")
+                $afilter += ("contain")
                 $afilter += ($filter_value)
-                # $filer_value = "=@" + $filter_value
             }
             #by default set to equal..
             default {
                 $afilter += ("==")
                 $afilter += ($filter_value)
-                # $filter_value = "==" + $filter_value
             }
         }
 
         if ($filter_attribute) {
-            # $filter = $filter_attribute + $filter_value
-            #$filter = $afilter
             $filter = @($filter_attribute) + $afilter
         }
 
