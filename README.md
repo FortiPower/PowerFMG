@@ -270,8 +270,8 @@ For  `Invoke-FMGRestMethod` and `Get-XXX` cmdlet like `Get-FMGFirewallAddress`, 
     Get-FMGFirewallAddress -name myFMG
 ...
 
-# Get Firewall Address contains myFMG
-    Get-FMGFirewallAddress -name myFMG -filter_type contains
+# Get Firewall Address where (like) %myFMG%
+    Get-FMGFirewallAddress -name myFMG -filter_type like
 ...
 
 # Get Firewall Address where subnet equal 192.0.2.0 255.255.255.0
@@ -279,7 +279,7 @@ For  `Invoke-FMGRestMethod` and `Get-XXX` cmdlet like `Get-FMGFirewallAddress`, 
 ...
 
 ```
-Actually, support only `equal` and `contains` filter type
+Actually, support only `equal`, `contains` and `like` filter type
 
 ### Invoke API
 for example to get FortiManager System Status Info
