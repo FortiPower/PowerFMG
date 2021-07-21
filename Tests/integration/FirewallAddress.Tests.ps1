@@ -43,6 +43,11 @@ Describe "Get Firewall Address" {
 
     Context "Search" {
 
+        It "Search Address with like (%login%)" {
+            $address = Get-FMGFirewallAddress -filter_type like -filter_value login
+            @($address).count | Should -Not -Be 0
+        }
+
         It "Search Address by name ($pester_address1)" {
             $address = Get-FMGFirewallAddress -name $pester_address1
             @($address).count | Should -be 1
