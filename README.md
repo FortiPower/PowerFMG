@@ -266,15 +266,15 @@ and Filter Operators :
 For  `Invoke-FMGRestMethod` and `Get-XXX` cmdlet like `Get-FMGFirewallAddress`, it is possible to using some helper filter (`-filter_attribute`, `-filter_type`, `-filter_value`)
 
 ```powershell
-# Get NetworkDevice named myFMG
+# Get Firewall Address named myFMG
     Get-FMGFirewallAddress -name myFMG
 ...
 
-# Get NetworkDevice contains myFMG
+# Get Firewall Address contains myFMG
     Get-FMGFirewallAddress -name myFMG -filter_type contains
 ...
 
-# Get NetworkDevice where subnet equal 192.0.2.0 255.255.255.0
+# Get Firewall Address where subnet equal 192.0.2.0 255.255.255.0
     Get-FMGFirewallAddress -filter_attribute subnet -filter_type equal -filter_value 192.0.2.0 255.255.255.0
 ...
 
