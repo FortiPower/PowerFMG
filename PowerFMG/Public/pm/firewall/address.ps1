@@ -210,9 +210,9 @@ function Get-FMGFirewallAddress {
         Get address named myFMGAddress
 
         .EXAMPLE
-        Get-FMGFirewallAddress -name FMG -filter_type contains
+        Get-FMGFirewallAddress -name FMG -filter_type like
 
-        Get address contains with *FMG*
+        Get address like with %FMG%
 
         .EXAMPLE
         Get-FMGFirewallAddress -uuid 9e73a10e-1772-51ea-a8d7-297686fd7702
@@ -234,7 +234,7 @@ function Get-FMGFirewallAddress {
         [Parameter (ParameterSetName = "name")]
         [Parameter (ParameterSetName = "uuid")]
         [Parameter (ParameterSetName = "filter")]
-        [ValidateSet('equal', 'contains')]
+        [ValidateSet('equal', 'contains', 'like')]
         [string]$filter_type = "equal",
         [Parameter (Mandatory = $false)]
         [Parameter (ParameterSetName = "filter")]
